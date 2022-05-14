@@ -7,9 +7,11 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const Product = require("../models/Product");
 
-router.get("/", (req, res) => {
-	console.log("Product route");
-});
+/**
+ * @route   POST api/products
+ * @desc    Create product for sells
+ * @access  Private (Required that a user be log in)
+ */
 
 router.post(
 	"/",
@@ -51,5 +53,35 @@ router.post(
 		}
 	}
 );
+
+/**
+ * @route   GET api/products
+ * @desc    Get all products for sells
+ * @access  Public
+ */
+
+router.get("/", async (req, res) => {
+	// console.log("Product route");
+	try {
+		const products = await Product.find();
+		if (!product) {
+			return res.status(400).json({ msg: "Product not found" });
+		}
+		res.json({ products });
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send("Server error");
+	}
+});
+
+router.get("/:id", async (req, res) => {
+	try {
+		const product = await Product.findById(req.params.id);
+		res.json({ product });
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send("Server error");
+	}
+});
 
 module.exports = router;
