@@ -11,6 +11,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 app.use("/api/users", require("./route/users"));
 app.use("/api/products", require("./route/products"));
+app.use("/api/auth", require("./route/auth"));
 
 app.get("/", (req, res) => {
 	res.send("eCom Application is up and running");
