@@ -35,6 +35,9 @@ router.post(
 		}
 		const { name, description, category, price, quantity } = req.body;
 
+		console.log(req.body);
+		console.log(req.user);
+
 		try {
 			const newProduct = new Product({
 				userId: req.user.id,
@@ -64,9 +67,6 @@ router.get("/", async (req, res) => {
 	// console.log("Product route");
 	try {
 		const products = await Product.find();
-		if (!product) {
-			return res.status(400).json({ msg: "Product not found" });
-		}
 		res.json({ products });
 	} catch (error) {
 		console.error(error.message);
@@ -74,9 +74,18 @@ router.get("/", async (req, res) => {
 	}
 });
 
+/**
+ * @route   GET api/products
+ * @desc    Get a particular product for sells
+ * @access  Public
+ */
+
 router.get("/:id", async (req, res) => {
 	try {
 		const product = await Product.findById(req.params.id);
+		if (!product) {
+			return res.status(400).json({ msg: "Product not found" });
+		}
 		res.json({ product });
 	} catch (error) {
 		console.error(error.message);
@@ -85,3 +94,22 @@ router.get("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+/**
+ * {
+    "name": "Car",
+    "description": "Red Toyota Spider",
+    "category": "Toyota New",
+    "price": "500000",
+    "quantity": "50"
+}
+
+{
+    "name": "HP 1030",
+    "description": "Portable and durable laptop",
+    "category": "Electronics",
+    "price": 500,
+    "quantity": 30
+    "brand": "HP"
+}
+ */

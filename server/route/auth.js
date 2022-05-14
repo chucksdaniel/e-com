@@ -91,6 +91,6 @@ module.exports = router;
  * {
     "name": "Daniel Chukwuma",
     "email": "iamdanielchukwuma@gmail.com",
-    "password": "Iamasssosjhs"
+    "password": "1234567890"
 }
  */
