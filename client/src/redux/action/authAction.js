@@ -1,6 +1,6 @@
 import axios from "axios";
-import { getServer } from "../utils";
-import setAuthToken from "../utils/setAuthToken";
+import { getServer } from "../../utils";
+import setAuthToken from "../../utils/setAuthToken";
 import {
 	SET_CURRENT_USER,
 	SUCCESSFUL_REGISTER,

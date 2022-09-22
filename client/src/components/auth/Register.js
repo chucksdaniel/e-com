@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Input from "../general/Input";
 import { connect } from "react-redux";
-import { withRouter, useNavigate } from "react-router-dom";
+// import { withRouter, useNavigate } from "react-router-dom";
+import { withRouter } from "../../redux/hoc";
 
-import { register } from "../../action/authAction";
+import { register } from "../../redux/action/authAction";
 
 class Register extends Component {
 	constructor() {
@@ -12,7 +13,7 @@ class Register extends Component {
 			name: "",
 			email: "",
 			password: "",
-			password: "",
+			password2: "",
 		};
 
 		this.onChange = this.onChange.bind(this);
